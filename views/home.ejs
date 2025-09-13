@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="flex justify-center items-center min-h-screen w-full bg-[#202c34]"
+    >
+    <div class="bg-gray-300 p-8 m-10 rounded-lg">
+ <h1 class="font-semibold text-2xl mb-3 ">Welcome, <span class="text-orange-500"><%= user.name %>👋</span></h1>
+      <p class="text-red-600">You are successfully logged in.</p>
+      <form action="/api/auth/logout" method="POST">
+        <button class="px-3 py-2 bg-blue-500 shadow-lg hover:bg-gray-500 hover:text-white mt-2 rounded" type="submit">
+          Logout
+        </button>
+      </form>
+    </div>
+     
+    </div>
+  </body>
+</html>
