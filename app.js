@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes")
 const path = require("path");
+const { error } = require("console");
 
 dotenv.config();
 const app = express();
@@ -33,11 +34,11 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => res.redirect("/signup"));
 
 app.get('/signUp', (req, res) =>{
-    res.render("signUp")
+    res.render("signUp" , {error : null})
 });
 
 app.get("login", (req, res) =>{
-    res.render("login");
+    res.render("login", {error: null});
 })
 // Start Server
 const PORT = process.env.PORT || 3000;
