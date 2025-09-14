@@ -15,6 +15,9 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+
+console.log("Mongo URI:", process.env.MONGO_URI);
+
 // DB Connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -29,6 +32,13 @@ app.use("/api/auth", authRoutes);
 // EJS Pages
 app.get("/", (req, res) => res.redirect("/signup"));
 
+app.get('/signUp', (req, res) =>{
+    res.render("signUp")
+});
+
+app.get("login", (req, res) =>{
+    res.render("login");
+})
 // Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
