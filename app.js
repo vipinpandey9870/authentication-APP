@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // form data handle ke liye
 app.use(cookieParser());
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -33,11 +34,11 @@ app.use("/api/auth", authRoutes);
 // EJS Pages
 app.get("/", (req, res) => res.redirect("/signup"));
 
-app.get('/signUp', (req, res) =>{
-    res.render("signUp" , {error : null})
+app.get('/signup', (req, res) =>{
+    res.render("signup" , {error : null})
 });
 
-app.get("login", (req, res) =>{
+app.get("/login", (req, res) =>{
     res.render("login", {error: null});
 })
 // Start Server
