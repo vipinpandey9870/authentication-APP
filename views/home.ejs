@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-[#202c34] min-h-screen flex items-center justify-center p-4">
     <div
-      class="flex justify-center items-center min-h-screen w-full bg-[#202c34]"
+      class="bg-gray-100 rounded-xl shadow-lg w-full max-w-md p-6 sm:p-8 text-center"
     >
-    <div class="bg-gray-300 p-8 m-10 rounded-lg">
- <h1 class="font-semibold text-2xl mb-3 ">Welcome, <span class="text-orange-500"><%= user.name %>👋</span></h1>
-      <p class="text-red-600">You are successfully logged in.</p>
+      <h1
+        class="font-semibold text-2xl sm:text-3xl mb-4 text-gray-800"
+      >
+        Welcome, <span class="text-orange-500"><%= user.name %> 👋</span>
+      </h1>
+
+      <p class="text-green-600 mb-6">You are successfully logged in.</p>
+
       <form action="/api/auth/logout" method="POST">
-        <button class="px-3 py-2 bg-blue-500 shadow-lg hover:bg-gray-500 hover:text-white mt-2 rounded" type="submit">
+        <button
+          class="w-full py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
+          type="submit"
+        >
           Logout
         </button>
       </form>
-    </div>
-     
     </div>
   </body>
 </html>

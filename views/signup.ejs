@@ -1,61 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-[#202c39] min-h-screen flex items-center justify-center p-4">
     <div
-      class="w-full min-h-screen bg-[#202c39] flex justify-center md:items-center  items-starts"
+      class="bg-gray-100 rounded-xl shadow-lg w-full max-w-md p-6 sm:p-8 md:p-10"
     >
-      <div class="bg-gray-300 rounded max-w-md w-full p-8 m-10">
-        <h1 class="font-bold text-4xl text-center mb-6 text-gray-800">
-          SignUp
-        </h1>
-        <% if (typeof error !== 'undefined' && error) { %>
-        <p class="text-red-500 text-center mb-4"><%= error %></p>
-        <% } %>
-        <form class="space-y-4" action="/api/auth/signup" method="POST">
+      <h1
+        class="font-bold text-3xl sm:text-4xl text-center mb-6 text-gray-800"
+      >
+        SignUp
+      </h1>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+      <p class="text-red-500 text-center mb-4"><%= error %></p>
+      <% } %>
+
+      <form class="space-y-4" action="/api/auth/signup" method="POST">
+        <div>
           <label for="name" class="block text-gray-700 font-medium">Name</label>
           <input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Enter your name"
             required
-            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2"
-          /><br />
-          <label class="block text-gray-700 font-medium" for="email"
-            >Email</label
-          >
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-gray-700 font-medium">Email</label>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             required
-            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2"
-          /><br />
-          <label class="block text-gray-700 font-medium" for="password"
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div>
+          <label for="password" class="block text-gray-700 font-medium"
             >Password</label
           >
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Enter your password"
             required
-            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2"
-          /><br />
-          <button
-            class="w-full px-3 py-2 bg-blue-500 mt-1 rounded hover:bg-gray-700 hover:text-white"
-            type="submit"
-          >
-            Signup
-          </button>
-        </form>
-        <p class="mt-2 text-center font-lg">
-          Already have an account?
-          <a class="text-blue-500" href="/api/auth/login">Login</a>
-        </p>
-      </div>
+            class="w-full mt-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <button
+          class="w-full py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-gray-600 transition"
+          type="submit"
+        >
+          Signup
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-sm sm:text-base">
+        Already have an account?
+        <a class="text-blue-500 font-medium hover:underline" href="/api/auth/login"
+          >Login</a
+        >
+      </p>
     </div>
   </body>
 </html>

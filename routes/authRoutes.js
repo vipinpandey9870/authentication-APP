@@ -13,8 +13,7 @@ router.get("/signup", (req, res) => {
   res.render("signup", { error: null });
 });
 
-// ----------------- SIGNUP (Generate OTP) -----------------
-// ...existing code...
+
 
 // ----------------- SIGNUP (Generate OTP) -----------------
 router.post("/signup", async (req, res) => {
@@ -43,6 +42,8 @@ router.post("/signup", async (req, res) => {
       otp: otpCode,
       otpExpires,
     });
+     
+    res.render("verify", { email, error: null });
 
     // Send OTP via nodemailer
     const transporter = nodemailer.createTransport({
@@ -53,17 +54,17 @@ router.post("/signup", async (req, res) => {
       },
     });
 
-    await transporter.sendMail({
+     transporter.sendMail({
       from: `"Auth App" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "Your OTP Code",
       text: `Your OTP code is ${otpCode}`,
       html: `<h2>Your OTP code is: <b>${otpCode}</b></h2>`,
-    });
-
-    console.log(`OTP sent to ${email}`);
-
-    res.render("verify", { email, error: null });
+    }).then(()=>{
+      console.log(`OTP sent to ${email}`)
+    }).catch(err =>{
+      console.log("Email send error:" , err.message)
+    })
   } catch (error) {
     console.log("Signup error:", error.message);
     res.render("signup", { error: "Server error. Please try again." });
