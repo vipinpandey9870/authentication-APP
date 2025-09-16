@@ -180,7 +180,7 @@ router.post("/logout", (req, res) => {
 router.get("/home", authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    res.render("Home", { user });
+    res.render("home", { user });
   } catch (error) {
     console.log("Home error:", error.message);
     res.redirect("/login");

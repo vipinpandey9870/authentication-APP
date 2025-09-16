@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use("/api/auth", authRoutes);
 
 // EJS Pages
-app.get("/", (req, res) => res.redirect("/signup"));
+app.get("/", (req, res) => res.redirect("/api/auth/signup"));
 
 app.get('/signup', (req, res) =>{
     res.render("signup" , {error : null})
