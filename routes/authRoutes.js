@@ -35,13 +35,13 @@ router.post("/signup", async (req, res) => {
     const otpExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 min
 
     // OTP save in Otp collection
-    await Otp.create({
-      email,
-      name,
-      password: hashedPassword,
-      otp: otpCode,
-      otpExpires,
-    });
+    // await Otp.create({
+    //   email,
+    //   name,
+    //   password: hashedPassword,
+    //   otp: otpCode,
+    //   otpExpires,
+    // });
      
     res.render("verify", { email, error: null });
 
@@ -53,16 +53,7 @@ router.post("/signup", async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-    // const transporter =  nodemailer.createTransport({
-    //   host: process.env.SMTP_HOST,
-    //   port: process.env.SMTP_PORT,
-    //   secure: false,
-    //   auth:{
-    //     user: process.env.SMTP_USER,
-    //     pass: process.env.SMTP_PASS,
-    //   },
-    // });
-
+   
      transporter.sendMail({
       from: `"Auth App" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -71,6 +62,13 @@ router.post("/signup", async (req, res) => {
       html: `<h2>Your OTP code is: <b>${otpCode}</b></h2>`,
     }).then(()=>{
       console.log(`OTP sent to ${email}`)
+      Otp.create({
+      email,
+      name,
+      password: hashedPassword,
+      otp: otpCode,
+      otpExpires,
+    });
     }).catch(err =>{
       console.log("Email send error:" , err.message)
     })
