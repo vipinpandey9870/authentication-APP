@@ -15,7 +15,7 @@ router.get("/signup", (req, res) => {
 
 
 
-// ----------------- SIGNUP (Generate OTP) -----------------
+// ----------------- SIGNUP (Generate OTP) ---------------
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -46,16 +46,25 @@ router.post("/signup", async (req, res) => {
     res.render("verify", { email, error: null });
 
     // Send OTP via nodemailer
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS,
+    //   },
+    // });
+    const transporter =  nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: process.env.SMTP_PORT,
+      secure: false,
+      auth:{
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
       },
     });
 
-     transporter.sendMail({
-      from: `"Auth App" <${process.env.EMAIL_USER}>`,
+    await transporter.sendMail({
+      from: `"Auth App" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "Your OTP Code",
       text: `Your OTP code is ${otpCode}`,
